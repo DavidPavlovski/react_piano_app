@@ -3,16 +3,18 @@ import React, { useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import Piano from './components/piano/Piano';
 
+import notes from './notes';
 function App() {
    const [ octave, setOctave ] = useState('octave_1');
 
    const handleOctaveChange = (e) => {
       setOctave(e.target.value);
    };
+   console.log(notes[octave]);
    return (
       <div>
          <Navbar changeOctave={handleOctaveChange} />
-         <Piano />
+         <Piano notes={notes[octave].notes} />
       </div>
    );
 }
