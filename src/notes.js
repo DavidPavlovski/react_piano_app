@@ -1,5 +1,5 @@
 const notes = {
-   octave_2: {
+   octave_1: {
       notes: [
          { note: 'C1', isFlat: false, altName: 'C' },
          { note: 'Db1', isFlat: true, altName: 'Db' },
