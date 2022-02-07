@@ -1,7 +1,10 @@
+import React from 'react';
+import Piano from './components/piano/Piano';
+
 function App() {
    return (
       <div>
-         <h1>Piano APP</h1>
+         <Piano />
       </div>
    );
 }
