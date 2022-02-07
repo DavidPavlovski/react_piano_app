@@ -1,10 +1,10 @@
 import React from 'react';
 import './key.css';
 
-function Key({ isFlat, noteName }) {
+function Key({ isFlat, altName }) {
    return (
       <div className={`key ${isFlat ? 'black' : 'white'}`}>
-         <span className='note-name'>{noteName}</span>
+         <span className='note-name'>{altName}</span>
       </div>
    );
 }

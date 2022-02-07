@@ -10,7 +10,6 @@ function App() {
    const handleOctaveChange = (e) => {
       setOctave(e.target.value);
    };
-   console.log(notes[octave]);
    return (
       <div>
          <Navbar changeOctave={handleOctaveChange} />
