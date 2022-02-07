@@ -9,12 +9,19 @@
    flex-flow: column nowrap;
    justify-content: end;
    padding-bottom: 12px;
+   cursor: pointer;
 }
 
 .white {
    width: var(--white-key-width);
    height: calc(var(--white-key-width) * 4);
    background-color: #fff;
+}
+.white:hover {
+   background-color: #f3f3f3;
+}
+.white:active {
+   background-color: #d3d3d3;
 }
 
 .black {
@@ -23,6 +30,12 @@
    margin: 0 calc(var(--black-key-width) / -2);
    background-color: #000;
    z-index: 1;
+}
+.black:hover {
+   background-color: #232323;
+}
+.black:active {
+   background-color: #444;
 }
 
 .note-name {

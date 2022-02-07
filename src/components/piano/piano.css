@@ -1,5 +1,5 @@
 .piano-container {
-   width: 50%;
-   margin: auto;
+   width: fit-content;
+   margin: 5rem auto 0;
    display: flex;
 }
