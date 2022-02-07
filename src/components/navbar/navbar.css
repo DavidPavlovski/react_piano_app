@@ -1,0 +1,17 @@
+.navbar {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   height: 64px;
+   background-color: #c8f2ef;
+}
+.select-container {
+   display: flex;
+   gap: 1em;
+}
+.select-container label {
+   font-size: 1.3em;
+}
+.select-container select {
+   width: 150px;
+}

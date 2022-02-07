@@ -7,7 +7,7 @@
    border: 1px solid #d3d3d3;
    display: flex;
    flex-flow: column nowrap;
-   justify-content: end;
+   justify-content: flex-end;
    padding-bottom: 12px;
    cursor: pointer;
 }
