@@ -11,8 +11,10 @@ function Piano(props) {
 
    const playNote = (id) => {
       const note = document.getElementById(id);
-      note.currentTime = 0;
-      note.play();
+      if (note) {
+         note.currentTime = 0;
+         note.play();
+      }
    };
 
    useEffect(
@@ -22,10 +24,30 @@ function Piano(props) {
             const whiteIndex = white_note_controls.indexOf(e.key);
             const blackIndex = black_note_controls.indexOf(e.key);
             if (whiteIndex > -1) {
-               playNote(white_notes[whiteIndex].note);
+               const note = white_notes[whiteIndex].note;
+               const key = document.getElementById(`key-${note}`);
+               key.classList.add('active');
+               playNote(note);
             }
             if (blackIndex > -1) {
-               playNote(black_notes[blackIndex].note);
+               const note = black_notes[blackIndex].note;
+               const key = document.getElementById(`key-${note}`);
+               key.classList.add('active');
+               playNote(note);
+            }
+         });
+         document.addEventListener('keyup', (e) => {
+            const whiteIndex = white_note_controls.indexOf(e.key);
+            const blackIndex = black_note_controls.indexOf(e.key);
+            if (whiteIndex > -1) {
+               const note = white_notes[whiteIndex].note;
+               const key = document.getElementById(`key-${note}`);
+               key.classList.remove('active');
+            }
+            if (blackIndex > -1) {
+               const note = black_notes[blackIndex].note;
+               const key = document.getElementById(`key-${note}`);
+               key.classList.remove('active');
             }
          });
       },

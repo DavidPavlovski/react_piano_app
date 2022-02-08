@@ -21,7 +21,10 @@
    background-color: #f3f3f3;
 }
 .white:active {
-   background-color: #d3d3d3;
+   background-color: #c3c3c3;
+}
+.white.active {
+   background-color: #c3c3c3;
 }
 
 .black {
@@ -35,7 +38,10 @@
    background-color: #232323;
 }
 .black:active {
-   background-color: #444;
+   background-color: #555;
+}
+.black.active {
+   background-color: #555;
 }
 
 .note-name {

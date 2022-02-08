@@ -6,7 +6,11 @@ function Key({ isFlat, altName, playNote, note }) {
       playNote(note);
    };
    return (
-      <div className={`key ${isFlat ? 'black' : 'white'}`} onClick={handlePlayNote}>
+      <div
+         id={`key-${note}`}
+         className={`key ${isFlat ? 'black' : 'white'}`}
+         onClick={handlePlayNote}
+      >
          <span className='note-name'>{altName}</span>
       </div>
    );
