@@ -5,7 +5,7 @@ import Piano from './components/piano/Piano';
 
 import notes from './notes';
 function App() {
-   const [ octave, setOctave ] = useState('octave_1');
+   const [ octave, setOctave ] = useState('octave_5');
 
    const handleOctaveChange = (e) => {
       setOctave(e.target.value);
