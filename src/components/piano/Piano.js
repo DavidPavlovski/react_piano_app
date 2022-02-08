@@ -26,13 +26,17 @@ function Piano(props) {
             if (whiteIndex > -1) {
                const note = white_notes[whiteIndex].note;
                const key = document.getElementById(`key-${note}`);
-               key.classList.add('active');
+               if (key) {
+                  key.classList.add('active');
+               }
                playNote(note);
             }
             if (blackIndex > -1) {
                const note = black_notes[blackIndex].note;
                const key = document.getElementById(`key-${note}`);
-               key.classList.add('active');
+               if (key) {
+                  key.classList.add('active');
+               }
                playNote(note);
             }
          });
@@ -42,12 +46,16 @@ function Piano(props) {
             if (whiteIndex > -1) {
                const note = white_notes[whiteIndex].note;
                const key = document.getElementById(`key-${note}`);
-               key.classList.remove('active');
+               if (key) {
+                  key.classList.remove('active');
+               }
             }
             if (blackIndex > -1) {
                const note = black_notes[blackIndex].note;
                const key = document.getElementById(`key-${note}`);
-               key.classList.remove('active');
+               if (key) {
+                  key.classList.remove('active');
+               }
             }
          });
       },
