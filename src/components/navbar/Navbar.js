@@ -7,7 +7,12 @@ export default function Navbar(props) {
          <h2>Piano App</h2>
          <div className='select-container'>
             <label htmlFor='octave-selector'>Octave</label>
-            <select id='octave-selector' name='octave' onChange={props.changeOctave}>
+            <select
+               id='octave-selector'
+               name='octave'
+               onChange={props.changeOctave}
+               defaultValue='octave_5'
+            >
                <option value={'octave_1'}>octave 1</option>
                <option value={'octave_2'}>octave 2</option>
                <option value={'octave_3'}>octave 3</option>
