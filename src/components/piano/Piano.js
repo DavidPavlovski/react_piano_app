@@ -39,16 +39,14 @@ function Piano({ notes }) {
       const blackIndex = black_note_controls.indexOf(e.key);
       if (whiteIndex > -1) {
          const note = white_notes[whiteIndex].note;
-         const noteIndex = pressedKeys.indexOf(note);
          setPressedKeys((prevKeys) => {
-            return prevKeys.splice(noteIndex, 1);
+            return prevKeys.filter((key) => key !== note);
          });
       }
       if (blackIndex > -1) {
          const note = black_notes[blackIndex].note;
-         const noteIndex = pressedKeys.indexOf(note);
          setPressedKeys((prevKeys) => {
-            return prevKeys.splice(noteIndex, 1);
+            return prevKeys.filter((key) => key !== note);
          });
       }
    };
