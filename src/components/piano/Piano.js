@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './piano.css';
 import Key from '../key/Key';
 
-function Piano(props) {
-   const black_notes = props.notes.filter(({ isFlat }) => isFlat);
-   const white_notes = props.notes.filter(({ isFlat }) => !isFlat);
+function Piano({ notes }) {
+   const [ pressedKeys, setPressedKeys ] = useState(() => []);
+   const black_notes = notes.filter(({ isFlat }) => isFlat);
+   const white_notes = notes.filter(({ isFlat }) => !isFlat);
 
    const white_note_controls = [ 'z', 'x', 'c', 'v', 'b', 'n', 'm' ];
    const black_note_controls = [ 's', 'd', 'h', 'j', 'k' ];
@@ -17,61 +18,61 @@ function Piano(props) {
       }
    };
 
+   const handleKeyDown = (e) => {
+      if (e.repeat) return;
+      const whiteIndex = white_note_controls.indexOf(e.key);
+      const blackIndex = black_note_controls.indexOf(e.key);
+      if (whiteIndex > -1) {
+         const note = white_notes[whiteIndex].note;
+         setPressedKeys((prevKeys) => [ ...prevKeys, note ]);
+         playNote(note);
+      }
+      if (blackIndex > -1) {
+         const note = black_notes[blackIndex].note;
+         setPressedKeys((prevKeys) => [ ...prevKeys, note ]);
+         playNote(note);
+      }
+   };
+
+   const handleKeyUp = (e) => {
+      const whiteIndex = white_note_controls.indexOf(e.key);
+      const blackIndex = black_note_controls.indexOf(e.key);
+      if (whiteIndex > -1) {
+         const note = white_notes[whiteIndex].note;
+         const noteIndex = pressedKeys.indexOf(note);
+         setPressedKeys((prevKeys) => {
+            return prevKeys.splice(noteIndex, 1);
+         });
+      }
+      if (blackIndex > -1) {
+         const note = black_notes[blackIndex].note;
+         const noteIndex = pressedKeys.indexOf(note);
+         setPressedKeys((prevKeys) => {
+            return prevKeys.splice(noteIndex, 1);
+         });
+      }
+   };
+
    useEffect(
       () => {
-         document.addEventListener('keydown', (e) => {
-            if (e.repeat) return;
-            const whiteIndex = white_note_controls.indexOf(e.key);
-            const blackIndex = black_note_controls.indexOf(e.key);
-            if (whiteIndex > -1) {
-               const note = white_notes[whiteIndex].note;
-               const key = document.getElementById(`key-${note}`);
-               if (key) {
-                  key.classList.add('active');
-               }
-               playNote(note);
-            }
-            if (blackIndex > -1) {
-               const note = black_notes[blackIndex].note;
-               const key = document.getElementById(`key-${note}`);
-               if (key) {
-                  key.classList.add('active');
-               }
-               playNote(note);
-            }
-         });
-         document.addEventListener('keyup', (e) => {
-            const whiteIndex = white_note_controls.indexOf(e.key);
-            const blackIndex = black_note_controls.indexOf(e.key);
-            if (whiteIndex > -1) {
-               const note = white_notes[whiteIndex].note;
-               const key = document.getElementById(`key-${note}`);
-               if (key) {
-                  key.classList.remove('active');
-               }
-            }
-            if (blackIndex > -1) {
-               const note = black_notes[blackIndex].note;
-               const key = document.getElementById(`key-${note}`);
-               if (key) {
-                  key.classList.remove('active');
-               }
-            }
-         });
+         window.addEventListener('keydown', handleKeyDown);
+         window.addEventListener('keyup', handleKeyUp);
       },
-      [ props ]
+      [ notes ]
    );
 
    return (
       <React.Fragment>
          <div className='piano-container'>
-            {props.notes.map(({ note, isFlat, altName }) => (
-               <Key key={note} note={note} isFlat={isFlat} altName={altName} playNote={playNote} />
-            ))}
-         </div>
-         <div>
-            {props.notes.map(({ note }) => (
-               <audio key={note} id={note} src={`/notes/${note}.mp3`} />
+            {notes.map(({ note, isFlat, altName }) => (
+               <Key
+                  key={note}
+                  note={note}
+                  isFlat={isFlat}
+                  altName={altName}
+                  playNote={playNote}
+                  pressedKeys={pressedKeys}
+               />
             ))}
          </div>
       </React.Fragment>
